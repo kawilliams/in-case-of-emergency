@@ -1,0 +1,540 @@
+body{
+	background-color:#aa0210;
+	min-width:1100px;
+}
+/* loding screen*/
+#loading_screen{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    opacity:0.75;
+    z-index: 100;
+    background:url(gears.gif)  center no-repeat #000;
+    display:none;
+
+   
+}
+*{
+	font-family:"verdana";
+	font-size:12.5px;	
+}			
+#main_body{
+	background-color:#999999;
+	margin:20px;
+	margin-top:110px; /*50px;*/
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);	
+	padding-bottom:10px;
+	padding-top:0px;
+	max-height:800px;
+	min-height:670px;
+	min-width:1170px;
+	height:80%;
+	transition: margin-top 0.5s;
+	transition: height 0.5s;
+}
+
+#welcome{
+	text-align:center;
+	padding-top:25px;
+	padding-bottom:0px;
+	font-family:"palatino";
+	font-size:22px;
+	color:white;	
+}
+#options{
+	background-color:black;
+	opacity:0.8;
+	color:white;
+	position:fixed;
+	top:0px;
+	margin-top:0px;
+	right:0px;
+	padding:10px;	
+	font-size:14.5px;
+	z-index:2;
+}
+#options:hover{
+	cursor:pointer;
+	opacity:1.0;	
+}
+#option_menu{
+	background-color:#262626;
+	opacity:1.0;
+	width:0%;
+	height:100%;
+	/*display:none;*/
+	position:fixed;	
+	margin-top:0px;
+	margin-right:0px;
+	top:0px;
+	right:0px;
+	transition:0.5s;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	z-index:2;
+}
+#close_btn_option{
+	float:left;	
+}
+#option_p_head{
+	color:white;
+	font-size:17px;
+	padding:5px;
+	padding-bottom:10px;
+	border-bottom:2px solid #e6e6e6;	
+}
+#login_info{
+	background-color:#cccccc;
+	padding:10px;
+	text-align:center;
+}
+.nav_option{
+	background-color:#e6e6e6;
+	padding:15px;
+	margin:0px;
+}
+.nav_link:hover{
+	color:#6666ff;
+	cursor:pointer;	
+}
+#email_syl_div{
+	display:none;
+	background-color:#e6e6e6;
+	border:1px solid #e6e6e6;
+	border-radius:4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	padding:10px;
+	position:fixed;
+	top:5%;
+	left:28%;
+	width:40%;
+	z-index:2;
+	line-height:30px;	
+}
+#email_lo_div{
+	display:none;
+	background-color:#e6e6e6;
+	border:1px solid #e6e6e6;
+	border-radius:4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	padding:10px;
+	position:fixed;
+	top:25%;
+	left:28%;
+	width:40%;
+	z-index:2;	
+}
+#ind_email, #ind_email_lo{
+	display:none;
+	background-color:#e6e6e6;
+	border:1px solid #e6e6e6;
+	border-radius:4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	padding:10px;
+	position:fixed;
+	top:25%;
+	left:28%;
+	width:40%;
+	z-index:2;
+}
+#course_status{
+	display:none;
+	background-color:#e6e6e6;
+	border:1px solid #e6e6e6;
+	border-radius:4px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	padding:10px;
+	position:fixed;
+	top:25%;
+	left:28%;
+	width:40%;
+	z-index:2;
+}
+#blackout{
+	position:fixed;
+	display:none;
+	z-index:1;
+	width:100%;
+	height:100%;
+	margin:0px;
+	top:0px;
+	left:0px;
+	background-color:black;
+	opacity:0.5;	
+}
+#send_from_input_box, #send_from_input_box_ind{
+	width:100%;
+}
+#send_to_input_box{
+	margin-bottom:10px;	
+	margin-right:20px;
+	background-color:white;
+	border:1px solid #cccccc;
+	display:inline-block;
+	padding:2px;
+	width:100% - 20px;
+	line-height:32px;
+	text-wrap:none;
+	overflow:scroll;
+	height:50px;
+}
+#send_to_input_box_grp_syl{
+	text-align:left;
+	margin:0px;
+	padding:0px;	
+}
+
+#send_to_input_box_ind{
+	margin-bottom:10px;	
+	margin-right:20px;
+	background-color:white;
+	border:1px solid #cccccc;
+	display:inline-block;
+	padding:3px;
+	width:98%;
+}
+#cancel_email_syl{
+	padding:5px;
+	display:inline-block;
+	color:white;
+	background-color:#6666ff;
+	border:1px solid #cccccc;
+	border-radius:6px;
+	margin-top:7px;	
+}
+#cancel_email_syl:hover{
+	cursor:pointer;
+	background-color:#4d4dff;	
+}
+#send_email_syl{
+	padding:5px;
+	float:right;
+	color:white;
+	background-color:#a6a6a6;
+	border:1px solid #cccccc;
+	border-radius:6px;
+	margin-top:7px;		
+}
+#send_email_syl:hover{
+	cursor:pointer;
+	background-color:#80c1ff;
+}
+#default_email{
+	width:100% - 20px;
+	height:150px;
+	background-color:white;
+	overflow:scroll;	
+	padding:10px;
+	border:1px solid #cccccc;
+}
+#davidson_logo{
+	height:40px;
+	width:200px;
+	float:right;
+	margin-top:0px;
+	margin-right:10px;	
+}
+#close_btn_email{
+	width:30px;
+	height:30px;
+	float:right;
+	cursor:pointer;
+}
+.email_recipient{
+	background-color:#cccccc;
+	border:1px solid #999999;
+	border-radius:4px;
+	padding:5px;	
+	margin:1px;
+	white-space:nowrap;
+}
+.close_recipient{
+	width:20px;
+	height:20px;
+	display:inline-block;	
+}
+
+/*---------------------------------Stats---------------------------------------*/
+
+#quick_info{
+	background-color:#e6e6e6;
+	width:calc(100% - 60px);	
+	margin-left:10px;
+	margin-bottom:0px;
+	height:80px; 
+	opacity:0.8;
+	outline:1px solid black;
+	position:absolute;
+	top:20px;
+	left:20px;
+	min-width:1170px;
+}
+#quick_info table{
+	width:100%;	
+}
+#quick_info td{
+	width:25%;
+	text-align:center;
+	padding:10px;
+	color:black;	
+}
+/*Styling the numbers below the headers*/
+.answers{
+	color:#6666ff;
+	text-align:center;
+	font-size:20px;
+	margin:3px;	
+	transition:1s;
+}
+
+p{
+	text-align:center;	
+}
+
+
+/*----------------------Department Selection--------------------------*/
+
+#dept_search{
+	width:18%;
+	border:1px solid black;
+	height:550px;
+	float:left;
+	border-radius:5px;
+	margin-left:3%;
+	margin-right:10px;
+	padding:10px;
+	padding-right:5px;
+	background-color:#737373;
+	/*position:absolute;
+	bottom:100px;
+	left:20px;
+	top:205px;
+	min-width:280px;*/
+}
+#dep_search_bar{
+	width:98%;
+	padding:5px;
+	border:1px solid gray;
+	border-radius:2px;
+	margin-bottom:10px;	
+}
+#dept_search span{
+	margin-right:2px;
+}
+
+
+/*-----------------------Professor Selection------------------------*/
+
+#prof_search_container{
+	border:1px solid black;
+	height:550px;
+	width:15%;
+	padding:10px;
+	border-radius:5px;
+	background-color:#737373;
+	/*position:absolute;
+	bottom:100px;
+	left:25%;
+	top:205px;
+	min-width:250px;*/
+	margin-left:23%;
+}
+#prof_search{
+	overflow-y:hidden;
+	overflow-x:hidden;
+	background-color:#737373;
+	margin-left:0%;
+	width:100%;
+	height:450px;
+}
+.prof{
+	border-bottom:1px solid #e6e6e6;
+	width:100%;	
+	text-align:center;
+	padding:8px;
+	background-color:white;
+	margin:0px;
+}
+.prof:hover, .prof:focus{
+	background-color:#ffb3b3;
+	cursor:pointer;	
+}
+.dep_li{
+	padding:8px;
+	padding-left:1%;
+	padding-right:1%;
+	border-radius:10px;
+	border:1px solid #cce6ff;
+	background-color:#cce6ff;
+	transition:0.5s;	
+	width:20%;
+	margin: 1px;
+}
+.prof_li{
+	width:calc(100% - 5px);
+	padding:10px;
+	padding-left:1%;
+	padding-right:1%;
+	border-radius:10px;
+	border:1px solid #cce6ff;
+	background-color:#cce6ff;
+	transition:0.5s;
+	margin: 1px;	
+}
+.dep_li:hover, .prof_li:hover{
+	background-color:#cce6ff;
+	cursor:pointer;	
+}
+
+
+/*-------------------------Course Results-----------------------------*/
+
+#syl_status_box{
+	margin-left:5px;
+	margin-right:40px;
+	margin-top:-572px;
+	background-color:white;
+	height:560px;
+	width:55%;	
+	/*visibility:hidden;*/
+	padding:0px;
+	padding-top:5px;
+	padding-bottom:5px;
+	/*display:inline-block;*/
+	float:right;
+	min-width:650px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	border:1px solid white;
+	border-radius:3px;
+}
+#syl_status_table{
+	height:530px;
+	overflow:scroll;
+	float:left;
+	width:100%;
+	margin-top:5px;
+	overflow-x:hidden;
+}
+#syl_status_box table{
+	width:100%;	
+	border-collapse:collapse;
+}
+#syl_status_box td, #syl_status_box th {
+	text-align:center;
+	padding:10px;
+	border-bottom:1px solid #cccccc;
+}
+#syl_status_box tr:nth-child(even){
+	background-color:#bfbfbf;
+}
+#syl_status_box tr:nth-child(odd){
+	background-color:#d9d9d9;	
+}
+.lo-status-btn {
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 2px 1x;
+    cursor: pointer;
+	
+}
+input[type=checkbox]{
+	cursor:pointer;	
+}
+
+.close_icon{
+	width:30px;
+	height:30px;
+}
+#close_stat{
+	float:right;
+	margin-left:400px;	
+	margin-top:0px;
+}
+.close_icon:hover{
+	cursor:pointer;	
+}
+
+/*Department, Professor*/
+.status_head{
+	font-size:17px;
+	margin-top:0px;
+	margin-bottom:8px;
+	color:#800000;
+	float:left;
+	margin-left:10px;
+}
+.button{
+	padding:5px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font-size: 12px;
+	font-family:"verdana";	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+	width:80%;
+	height:60px;
+	border-radius:10px;
+}
+#show_deps, #show_profs{
+	border:1px solid #cccccc;
+	background-color:#cccccc;
+	margin:0 auto;
+	margin-top:20px;
+	width:90%;
+	height:50px;
+}
+
+.tooltip{
+	background-color:#cce6ff;
+	padding:5px;
+	border:1px solid #cce6ff;
+	border-radius:4px;
+	font-size:12px;
+	position:fixed;
+	display:none;
+	margin-left:3px;	
+}
+.tooltip:hover{
+	cursor:pointer;	
+}
+
+#hidden_rec_lst_syl{
+	border:1px solid #cccccc;
+	padding:5px;
+	padding-bottom:10px;
+	background-color:white;
+	width:100%-10px;
+	display:none;	
+	max-height:200px;	
+	overflow:scroll;
+	margin-top:0px;
+	margin-bottom:10px;
+}
+#click_edit_recip{
+	cursor:pointer;
+	text-align:left;	
+}
+#click_edit_recip:hover{
+	color:#4d4dff;
+}
+#search_recip{
+	display:none;
+	margin-bottom:5px;
+	border-radius:4px;
+	padding:5px;
+	width:40%;
+	outline:none;
+	border:1px solid #cccccc;	
+}
+#search_recip:focus{
+	outline: 2px solid #cce6ff;	
+}
+
