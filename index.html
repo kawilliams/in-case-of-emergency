@@ -1,0 +1,463 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Project Pronto</title>
+		<link href="static/index.css" rel="stylesheet" type="text/css" />
+		<script>
+			var imgNum = 0;
+			function animateLogo(){
+				setInterval(function(){
+					if (imgNum > 5){
+						imgNum = 0;	
+					}
+					document.getElementById("prontologo").src = "prontologo" + String(imgNum) + ".png";
+					document.getElementById("prontologo").src = "prontologo" + String(imgNum) + ".png";
+					imgNum++; 
+				}, 800);	
+			}
+			var is800 = false;
+			function toggleAcc(contentID){
+				var curElem = document.getElementById(contentID);
+				if (curElem.style.height == '500px'){
+					curElem.style.height = '0px';
+					curElem.style.padding = '0px';	
+				}
+				else if (curElem.style.height != '0px'){
+					curElem.style.height = '0px';
+					curElem.style.padding = '0px';
+					is800 = true;	
+				}
+				else if ((curElem.style.height == '0px') && (is800)){
+					curElem.style.height = '800px';
+					curElem.style.padding = '20px';	
+					is800 = false;
+				}
+				else{
+					curElem.style.height = '500px';
+					curElem.style.padding = '20px';	
+				}
+			}
+			
+			var allTabContentIDs = ["community-tools-content", "admin-tools-content", "student-tools-content"];
+			function findOpenTabs(curID){
+				for (var i = 0; i < allTabContentIDs.length; i++){
+					var elemID = allTabContentIDs[i];
+					if (elemID != curID){
+						(document.getElementById(elemID)).style.display = 'none';	
+					}	
+				}
+			}
+			function toggleDropdown(elemID, arrowID){
+				var elem = document.getElementById(elemID);
+				var arrow = document.getElementById(arrowID);
+				if (elem.style.display =='block'){
+					elem.style.display = 'none';
+					arrow.src = "down-white-arrow.png";	
+				}	
+				else{
+					elem.style.display = 'block';
+					arrow.src = "up-white-arrow.png";		
+				}
+			}
+			
+			function changePage(pageToHideID, pageToShowID){
+				document.getElementById(pageToHideID).style.display = 'none';
+				document.getElementsByClassName(pageToHideID + "_tab")[0].style.backgroundColor = "#ac1a2f";
+				document.getElementsByClassName(pageToHideID + "_tab")[1].style.backgroundColor = "#ac1a2f";
+				
+				document.getElementById(pageToShowID).style.display = 'block';
+				document.getElementsByClassName(pageToShowID + "_tab")[0].style.backgroundColor = "#851425";
+				document.getElementsByClassName(pageToShowID + "_tab")[1].style.backgroundColor = "#851425";
+			}
+			
+			
+			var allPageIDs = ["homepage", "news_div_page", "our_team_div", "tool_bank_page", "workload_page", "findacourse", "orientation_assign_page", "coursefinder_page"];
+			function findShowingPage(){
+				var showingPageID;
+				for (var i = 0; i < allPageIDs.length; i++){
+					var curElem = document.getElementById(allPageIDs[i]);
+					if (curElem.style.display != 'none'){
+						showingPageID = allPageIDs[i];
+						break;	
+					}
+				}
+				return showingPageID;
+			}
+		</script>
+		
+	</head>
+	<body onload="animateLogo();">
+		<img src="prontologo0.png" id="prontologo"/>
+		<p id="prod_on_tools">PRONTO: <span style="color:gray;">PRoductive ONline TOols</span></p>
+		<img src="dav-black-logo.png" id="dav_logo"/>
+		
+		<div id="nav">
+			<table id="nav_table">
+				<tr>
+					<td style="border-right:2px solid #851425;" class="homepage_tab" onclick="changePage(findShowingPage(), 'homepage')">Home</td>
+					<td style="border-left:2px solid #851425;" class="our_team_div_tab" onclick="changePage(findShowingPage(),'our_team_div');">Our Team</td>
+					<td style="border-left:2px solid #851425;" class="news_div_page_tab" onclick="changePage(findShowingPage(), 'news_div_page');">News</td>
+					<td style="border-left:2px solid #851425;" onclick="location.href='http://mcs3.davidson.edu/how-to/'">How To</td>
+
+					<td class="workload_page_tab orientation_assign_page_tab">
+						<div class="nav-acc-head" id="admin_tools_head" onclick="findOpenTabs('admin-tools-content');toggleDropdown('admin-tools-content', 'admin_tools_arrow');"><span style="position:relative;top:30%;">Administrative Tools <img src="down-white-arrow.png" id='admin_tools_arrow' class="arrow"/></span></div>
+						<div class="nav-acc-content" id="admin-tools-content">
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'workload_page'); document.getElementById('admin_tools_head').click();">NEW: Workload Tracker</p>
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'orientation_assign_page'); document.getElementById('admin_tools_head').click();">Orientation Team Task Assigner</p>
+						</div>
+					</td>
+					<td class="coursefinder_page_tab findacourse_page_tab">
+						<div class="nav-acc-head" id="student_tools_head" onclick="findOpenTabs('student-tools-content');toggleDropdown('student-tools-content', 'student_tools_arrow');"><span style="position:relative;top:30%;">Student Tools <img src="down-white-arrow.png" id='student_tools_arrow' class="arrow"/></span></div>
+						<div class="nav-acc-content" id="student-tools-content">
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'coursefinder_page'); document.getElementById('student_tools_head').click();">Course Finder</p>
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'findacourse_page'); document.getElementById('student_tools_head').click();">NEW: FindACourse</p>
+						</div>
+					</td>
+					
+					<td class="tool_bank_page_tab">
+						<div class="nav-acc-head" id="com_tools_head" onclick="findOpenTabs('community-tools-content');toggleDropdown('community-tools-content', 'com_tools_arrow');"><span style="position:relative;top:30%;">Community Tools <img src="down-white-arrow.png" id='com_tools_arrow' class="arrow"/></span></div>
+						<div class="nav-acc-content" id="community-tools-content">
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'tool_bank_page'); document.getElementById('com_tools_head').click();">Tool Bank Order Helper</p>
+						</div>
+					</td>
+				</tr>
+			</table>				
+		</div> <!-- End nav -->
+		
+		<div id="nav_small_screen">
+			<table id="nav_table_small_screen">
+				<tr>
+					<td style="border-right:2px solid #851425;" class="homepage_tab" onclick="changePage(findShowingPage(), 'homepage')">Home</td>
+					<td style="border-left:2px solid #851425;" class="our_team_div_tab" onclick="changePage(findShowingPage(),'our_team_div');">Our Team</td>
+					<td style="border-left:2px solid #851425;" class="news_div_page_tab" onclick="changePage(findShowingPage(), 'news_div_page');">News</td>
+					<td style="border-left:2px solid #851425;" onclick="location.href='http://mcs3.davidson.edu/how-to/'">How To</td>
+					<td class="workload_page_tab coursefinder_page_tab findacourse_page_tab orientation_assign_page_tab tool_bank_page_tab">
+						<div class="nav-acc-head_small_screen" id="tools_head" onclick="toggleDropdown('tools-content', 'tools_arrow');"><span style="position:relative;top:30%;">Tools<img src="down-white-arrow.png" id='tools_arrow' class="arrow"/></span></div>
+						<div class="nav-acc-content-small-screen" id="tools-content">
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'tool_bank_page'); document.getElementById('tools_head').click();">Tool Bank Order Helper</p>
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'workload_page'); document.getElementById('tools_head').click();">NEW: Workload Tracker</p>
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'findacourse_page'); document.getElementById('tools_head').click();">NEW: FindACourse</p>
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'orientation_assign_page'); document.getElementById('tools_head').click();">Orientation Team Task Assigner</p>
+							<p class="nav-acc-opt" onclick="changePage(findShowingPage(), 'coursefinder_page'); document.getElementById('tools_head').click();">Course Finder</p>
+						</div>
+					</td>
+				</tr>
+			</table>				
+		</div> <!-- End nav small screen -->
+		
+		<div id="homepage">
+		<div id="left-homepage">
+		<div id="about_us_div">
+			<p id="about_us"><b>ABOUT US</b></p>
+			<p id="about_us_content">Project PRONTO is an initiative started by Laurie Heyer of Davidson College. The Mission of Project PRONTO is to provide web-based tools that streamline tasks for campus and community partners. Several web-based tools have been built already and we will expand in the future. <br><br>Express your interest in working on Project PRONTO, or send requests and suggestions for new tools, to Dr. Laurie Heyer at <a href="mailto:laheyer@davidson.edu">laheyer@davidson.edu</a>.</p>
+		</div> <!-- End About us -->
+		
+		
+		<div id="quick_links_div_small_screen">
+				<p id="quick_links_head_small_screen">QUICK LINKS</p>
+				<table style="color:white;width:100%">
+					<tr>
+						<td>
+							<div class="quick_links_box">
+								<p onclick="location.href = 'http://gcat2.davidson.edu/ToolBank/ToolBank_MCS/ToolBank.html';" class="quick_links_link">Tool Bank Order Helper</p>
+							</div> <!-- End quicklinks box -->
+						</td>
+						<td>
+							<div class="quick_links_box">
+								<p onclick="location.href = 'workloadtracker/';" class="quick_links_link">NEW: Workload Tracker</p>
+							</div> <!-- End quicklinks box -->
+						</td>
+						<td>
+							<div class="quick_links_box">
+							<p onclick="location.href = 'search';" class="quick_links_link">NEW: FindACourse</p>
+							</div> <!-- End quicklinks box -->
+						</td>
+						<td>
+							<div class="quick_links_box">
+								<p onclick="location.href = 'Simon/OTassignment/Website/';" class="quick_links_link">Orientation Team Task Assigner</p>
+							</div> <!-- End quicklinks box -->
+						</td>
+						<td>
+							<div class="quick_links_box">
+							<p onclick="location.href = 'coursepicker/coursefinder.html';" class="quick_links_link">Coursefinder</p>
+							</div> <!-- End quicklinks box -->
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+		<div id="news_div">
+			<p id="in_the_news">IN THE NEWS</p>
+			<div class="accordion">
+				<p class="accordion-head" onclick="toggleAcc('math_proj_helps_tool_bank_content');"><b>Math Project Helps Tool Bank Volunteers Save Shoe Leather</b><br><br><span style="color:black;">July 30, 2015 by Davidson College</span></p>
+				<p class="accordion-content" id="math_proj_helps_tool_bank_content" style="height:500px;">
+					The classic "traveling salesperson problem" in mathematics asks: Given a list of cities and the distances between each pair of cities, what is the shortest possible route for the salesperson to visit each city exactly once and return to the origin city?<br><br>
+						
+Davidson students in a community-based learning "Mathematical Modeling" course recognized that this theoretical exercise had real world consequences for the non-profit Charlotte Community ToolBank. The organization maintains a vast inventory of tools, from cordless drills, ladders, rakes and shovels to circular saws, and makes them available to local charitable organizations for their community service projects.<br><br>
+	
+Clients include churches, scout troops and community initiatives such as Hands On Charlotte and Great American Clean-Up. Last year the four-year-old ToolBank processed 527 tool orders, and expects to exceed that figure this year. All area non-profits are eligible to register to use the service, and pay just three percent of the retail price of each tool per week as a handling fee.<br><br>
+	
+<b>TOO MUCH SEARCHING</b><br>
+But while their mission is admirable, ToolBank systems needed help. With a total of 11,000 tools located in scores of bins around its 5,500-square-foot warehouse, volunteers who assembled tool orders wasted a lot of time and shoe leather in "scavenger hunts" around the warehouse for the exact items clients needed.<br><br>
+	
+"We were looking for ways to make the process more efficient," said ToolBank program manager Sheri Osborne.<br><br>
+	
+Davidson students Julie Park '16, Ross Kruse '17 and Katy Williams '17 were coincidentally enrolled in last semester's "Mathematical Modeling" course. For one of their assignments, Kimbrough Professor of Mathematics Laurie Heyer required students to identify and address an issue faced by the college or a local nonprofit organization.<br><br>
+	
+Park, a Presidential Scholar, had earlier joined friends in a day of volunteer service at the Charlotte Community ToolBank where she learned about the organization's problems assembling orders. She asked Osborne if she, Kruse, who is a Julian and Robert J. Lake Scholar, and Williams could work on it as their course project. Osborne was delighted.<br><br>
+	
+"It's awesome to have someone outside of ToolBank look at our situation with fresh eyes," she said.<br><br>
+	
+<b style="padding-bottom:10px;">APPLIED MATH</b><br>
+Williams said her group's original plan was to rearrange the tools in the warehouse. "But the shelves and boxes are big and heavy, and it would be inefficient to rearrange everything. So instead we took a Google map approach, and used Dijkstra's algorithm for finding the shortest paths between nodes in a graph, and the Nearest Neighbor approach to ordering the nodes."<br><br>
+	
+She continued, "We mapped the location of 41 tool storage points in the warehouse and fed those into the system. Now volunteers get a printout that shows them not only the number and type of tools requested, but also their location, and the quickest path to reach all those locations. Basically, it's solving the Traveling Salesperson problem."<br><br>
+	
+The Davidson students spent about a month developing and testing the program, which they named the "Charlotte Community ToolBank Order Helper." In addition to mapping the location of tools, they assigned a "grabability" index for each tool that reflected the particular difficulty of carrying large, heavy items.<br><br>
+	
+<b style="padding-bottom:10px;">SOLUTIONS FOR CAMPUS ISSUES</b><br>
+While Williams, Kruse and Park focused their efforts on Charlotte Community ToolBank, other groups of students in Heyer's class focused on campus projects. They included a more efficient system to schedule tutors in the math and science center, a more efficient system to assign the 100 or so Orientation Team students to tasks during the annual 10-day orientation period, and an approach to decreasing food waste at Vail Commons.<br><br>
+	
+Williams and Heyer are continuing the initiative this summer by working together on a project called PRONTO (Productive Online Tools). It includes a system to help students find classes that meet their curriculum requirements, and a program to track faculty work on department and campus-wide committees.<br><br>
+	
+<b style="padding-bottom:10px;">COMMUNITY-BASED LEARNING</b><br>
+Heyer's community-based learning course in math modeling is among nearly 20 such courses offered each year in disciplines throughout the curriculum. Coordinated through the college's Office of Civic Engagement, the program stipulates that each course must include work on a community-defined need.<br><br>
+	
+Heyer will again offer "Mathematical Modeling" in the spring 2016 semester. Community-based learning courses offered in the upcoming fall semester include "Medical Anthropology," "Food and Sustainability" and "Life Stories."<br><br>
+	
+Heyer said her course and other community-based learning courses are popular with students because they allow them to "do something real and meaningful, and contribute to the life of the college and beyond."<br><br>
+	
+Williams has spent part of her summer on campus working on the final details of Charlotte Community ToolBank Order Helper. Pleased with her work, the ToolBank staff has asked her to consider helping to improve the ToolBank's nationwide LFNt (pronounced "Elephant") inventory system.<br><br>
+	
+The national organization, comprised of nine affiliates, plans this summer to launch a $180,000 fundraising campaign to improve LFNt. But what she really needs, said Osborne, is another smart, dedicated Davidson College student who could integrate LFNt with the Charlotte Community ToolBank Order Helper.<br><br>
+	
+"Would she be interested?" Osborne asked Williams at a recent meeting. The national ToolBank information/technology committee will be considering the upgrade in the early fall, and Osborne would love to have Williams sitting at the table.
+				</p>
+			</div> <!-- End accordion -->
+		</div> <!-- End news div -->
+		</div> <!-- End left-homepage -->
+		
+		<div id="right-homepage">
+			<div id="quick_links_div">
+				<p id="quick_links_head">QUICK LINKS</p>			
+				<div class="quick_links_subdiv">
+				<p class="quick_links_tool_type">Administrative Tools</p>
+				<ul>
+					<li onclick="location.href = 'workloadtracker/index.html';" class="quick_links_link"><u>NEW: Workload Tracker</u></li>
+					<li onclick="location.href = 'syllabi_manager';" class="quick_links_link"><u>NEW: Syllabi Manager</u></li>
+					<li onclick="location.href = 'upload_syllabi';" class="quick_links_link"><u>NEW: Upload Syllabi</u></li>
+					<li onclick="location.href = 'Simon/OTassignment/Website/';" class="quick_links_link"><u>Orientation Team Task Assigner</u></li>
+				</ul>
+				</div> <!-- End quicklinks subdiv -->
+				
+				<div class="quick_links_subdiv">
+				<p class="quick_links_tool_type">Student Tools</p>
+				<ul>
+					<li onclick="location.href = 'search';" class="quick_links_link"><u>NEW: FindACourse</u></li>
+					<li onclick="location.href = 'coursepicker/coursefinder.html';" class="quick_links_link"><u>Coursefinder</u></li>
+					
+				</ul>
+				</div> <!-- End quicklinks subdiv -->
+				<div class="quick_links_subdiv">
+				<p class="quick_links_tool_type">Community Tools</p>
+				<ul>
+					<li onclick="location.href = 'http://gcat2.davidson.edu/ToolBank/ToolBank_MCS/ToolBank.html';" class="quick_links_link"><u>Tool Bank Order Helper</u></li>
+				</ul>
+				</div> <!-- End quicklinks subdiv -->
+			</div>
+		</div>
+		</div>
+		
+		
+<!--~~~~~~~~~~~~~~~~~~~~ Our Team Page ~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+		<div id="our_team_div" style="display:none;">
+			<p class="our_team_header">TEAM LEADER</p>
+			<div class="profile" style="margin:0 auto;">
+				<p style="color:#cce6ff"><b>DR. LAURIE J. HEYER</b></p>
+				<p>Dr. Laurie Heyer is currently a professor of Bioinformatics, the intersection of mathematics, biology, and computer science, at Davidson College. She hails from ..., Texas and has degrees in... from ... She created Project PRONTO in 2015 as part of an effort to modernize many of the everyday administrative and student processes on the Davidson Campus. </p>
+				<p>Email: <a class="email_link" href="mailto:laheyer@davidson.edu">laheyer@davidson.edu</a></p>
+			</div><br><br>
+			<p class="our_team_header">CURRENT MEMBERS</p>
+			
+				<div class="profile" style="margin:0 auto; width:90%;margin-top:40px;">
+					<p style="color:#cce6ff"><b>KATY WILLIAMS</b></p>
+					<p>Katy Williams is currently pursuing degrees in Math and Computer Science as part of the Davidson Class of 2017. She is from Apex, NC and is captain of the Davidson College Women's Swimming and Diving team. She was part of the original Project PRONTO team in the summer of 2015. </p>
+					<p>Her projects include:</p>
+					<div class="our_team_projects">
+					<ul>
+						<li>ToolBank Order Helper with Ross Kruse ('17), Julie Park ('16), and Sherri Osbourne (Director of Charlotte ToolBank)</li>
+						<li>Course Finder with Mason Lin ('17)</li>
+						<li>Workload Tracker 1.0 with Jane Gribble ('14)?</li>
+						<li>Workload Tracker 2.0 with Ashley Alexander-Lee ('17) and Hermon Mulat ('18)</li>
+						<li>FindACourse with Ashley Alexander-Lee ('17) and Hermon Mulat ('18)</li>
+					</ul>
+					</div>
+					<p>Email: <a class="email_link" href="mailto:kawilliams@davidson.edu">kawilliams@davidson.edu</a></p>
+				</div>
+	
+				<div class="profile" style="margin:0 auto;width:90%;margin-top:40px;">
+					<p style="color:#cce6ff"><b>ASHLEY ALEXANDER-LEE</b></p>
+					<p>Ashley Alexander-Lee is currently pursuing degrees in Music and Computer Science as part of the Davidson Class of 2017. She is from Tuscaloosa, AL and is part of FICSIT (Females in Computer Science and Information Technology), an initiative also lead by Dr. Laurie Heyer, as well as many of the choral groups on campus. She joined PRONTO in the Summer of 2016 and has primarily been responsible for the majority of the HTML, CSS, and Javascript for the current projects.</p>
+					<p>Her projects include:</p>
+					<div class="our_team_projects">
+					<ul>
+						<li>Workload Tracker 2.0 with Hermon Mulat ('18) and Katy Williams ('17)</li>
+						<li>FindACourse with Hermon Mulat ('18) and Katy Williams ('17)</li>
+						<li>Project PRONTO Homepage</li>
+					</ul>
+					</div>
+					<p>Email: <a class="email_link" href="mailto:asalexanderlee@davidson.edu">asalexanderlee@davidson.edu</a></p>
+				</div>
+				
+				<div class="profile" style="margin:0 auto;width:90%;margin-top:40px;">
+					<p style="color:#cce6ff"><b>HERMON MULAT</b></p>
+					<p>Hermon Mulat is currently pursuing degrees in Math and Computer Science as part of the Davidson Class of 2018. He is from Addis Ababa, Ethiopia and enjoys playing soccer. He joined PRONTO in the Summer of 2016 and worked primarily on the DataBases to support the current tools.</p>
+					<p>His projects include:</p>
+					<div class="our_team_projects">
+					<ul>
+						<li>Workload Tracker 2.0 with Ashley Alexander-Lee ('17) and Katy Williams ('17)</li>
+						<li>FindACourse with Ashley Alexander-Lee ('18) and Katy Williams ('17)</li>
+					</ul>
+					</div>
+					<p>Email: <a class="email_link" href="mailto:hemulat@davidson.edu">hemulat@davidson.edu</a></p>
+				</div>
+		</div>
+		
+
+
+<!--~~~~~~~~~~~~~~~~~~~~ News Page ~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		
+			<div id="news_div_page" style="display:none;">
+			<p id="in_the_news_page">IN THE NEWS</p>
+			<div class="accordion">
+				<p class="accordion-head" onclick="toggleAcc('math_proj_helps_tool_bank_content_page');"><b>Math Project Helps Tool Bank Volunteers Save Shoe Leather</b><br><br><span style="color:black;">July 30, 2015 by Davidson College</span></p>
+				<p class="accordion-content" id="math_proj_helps_tool_bank_content_page" style="height:800px;">
+					The classic "traveling salesperson problem" in mathematics asks: Given a list of cities and the distances between each pair of cities, what is the shortest possible route for the salesperson to visit each city exactly once and return to the origin city?<br><br>
+						
+Davidson students in a community-based learning "Mathematical Modeling" course recognized that this theoretical exercise had real world consequences for the non-profit Charlotte Community ToolBank. The organization maintains a vast inventory of tools, from cordless drills, ladders, rakes and shovels to circular saws, and makes them available to local charitable organizations for their community service projects.<br><br>
+	
+Clients include churches, scout troops and community initiatives such as Hands On Charlotte and Great American Clean-Up. Last year the four-year-old ToolBank processed 527 tool orders, and expects to exceed that figure this year. All area non-profits are eligible to register to use the service, and pay just three percent of the retail price of each tool per week as a handling fee.<br><br>
+	
+<b>TOO MUCH SEARCHING</b><br>
+But while their mission is admirable, ToolBank systems needed help. With a total of 11,000 tools located in scores of bins around its 5,500-square-foot warehouse, volunteers who assembled tool orders wasted a lot of time and shoe leather in "scavenger hunts" around the warehouse for the exact items clients needed.<br><br>
+	
+"We were looking for ways to make the process more efficient," said ToolBank program manager Sheri Osborne.<br><br>
+	
+Davidson students Julie Park '16, Ross Kruse '17 and Katy Williams '17 were coincidentally enrolled in last semester's "Mathematical Modeling" course. For one of their assignments, Kimbrough Professor of Mathematics Laurie Heyer required students to identify and address an issue faced by the college or a local nonprofit organization.<br><br>
+	
+Park, a Presidential Scholar, had earlier joined friends in a day of volunteer service at the Charlotte Community ToolBank where she learned about the organization's problems assembling orders. She asked Osborne if she, Kruse, who is a Julian and Robert J. Lake Scholar, and Williams could work on it as their course project. Osborne was delighted.<br><br>
+	
+"It's awesome to have someone outside of ToolBank look at our situation with fresh eyes," she said.<br><br>
+	
+<b style="padding-bottom:10px;">APPLIED MATH</b><br>
+Williams said her group's original plan was to rearrange the tools in the warehouse. "But the shelves and boxes are big and heavy, and it would be inefficient to rearrange everything. So instead we took a Google map approach, and used Dijkstra's algorithm for finding the shortest paths between nodes in a graph, and the Nearest Neighbor approach to ordering the nodes."<br><br>
+	
+She continued, "We mapped the location of 41 tool storage points in the warehouse and fed those into the system. Now volunteers get a printout that shows them not only the number and type of tools requested, but also their location, and the quickest path to reach all those locations. Basically, it's solving the Traveling Salesperson problem."<br><br>
+	
+The Davidson students spent about a month developing and testing the program, which they named the "Charlotte Community ToolBank Order Helper." In addition to mapping the location of tools, they assigned a "grabability" index for each tool that reflected the particular difficulty of carrying large, heavy items.<br><br>
+	
+<b style="padding-bottom:10px;">SOLUTIONS FOR CAMPUS ISSUES</b><br>
+While Williams, Kruse and Park focused their efforts on Charlotte Community ToolBank, other groups of students in Heyer's class focused on campus projects. They included a more efficient system to schedule tutors in the math and science center, a more efficient system to assign the 100 or so Orientation Team students to tasks during the annual 10-day orientation period, and an approach to decreasing food waste at Vail Commons.<br><br>
+	
+Williams and Heyer are continuing the initiative this summer by working together on a project called PRONTO (Productive Online Tools). It includes a system to help students find classes that meet their curriculum requirements, and a program to track faculty work on department and campus-wide committees.<br><br>
+	
+<b style="padding-bottom:10px;">COMMUNITY-BASED LEARNING</b><br>
+Heyer's community-based learning course in math modeling is among nearly 20 such courses offered each year in disciplines throughout the curriculum. Coordinated through the college's Office of Civic Engagement, the program stipulates that each course must include work on a community-defined need.<br><br>
+	
+Heyer will again offer "Mathematical Modeling" in the spring 2016 semester. Community-based learning courses offered in the upcoming fall semester include "Medical Anthropology," "Food and Sustainability" and "Life Stories."<br><br>
+	
+Heyer said her course and other community-based learning courses are popular with students because they allow them to "do something real and meaningful, and contribute to the life of the college and beyond."<br><br>
+	
+Williams has spent part of her summer on campus working on the final details of Charlotte Community ToolBank Order Helper. Pleased with her work, the ToolBank staff has asked her to consider helping to improve the ToolBank's nationwide LFNt (pronounced "Elephant") inventory system.<br><br>
+	
+The national organization, comprised of nine affiliates, plans this summer to launch a $180,000 fundraising campaign to improve LFNt. But what she really needs, said Osborne, is another smart, dedicated Davidson College student who could integrate LFNt with the Charlotte Community ToolBank Order Helper.<br><br>
+	
+"Would she be interested?" Osborne asked Williams at a recent meeting. The national ToolBank information/technology committee will be considering the upgrade in the early fall, and Osborne would love to have Williams sitting at the table.
+				</p>
+			</div>
+		</div>
+		
+		
+<!--~~~~~~~~~~~~~~~~~~~~~ Tool Bank Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+		<div id="tool_bank_page" class="toolpage" style="display:none;">
+			<p onclick="location.href='http://gcat2.davidson.edu/ToolBank/ToolBank_MCS/ToolBank.html';" class="visit_tool">Visit the Tool Bank Order Helper Homepage </p>
+			<div class="toolpage_descript_div">
+				<p class="toolpage_descript"><b>DESCRIPTION</b></p>
+				<p id="toolpage_descript_content">The Tool Bank helps the Charlotte Community Toolbank minimize the time that volunteers spend fulfilling orders.</p>
+			</div> <!-- End toolpage_descript_div -->
+			<div class="demo_tool_div">
+				<p class="demo_header">DEMO VERSION</p>
+				<p class="demo_descript">For each tool, we provide simplified demo versions in order to make these tools available to anyone who wishes to use them. These versions will not include security measures or backend scripts (for our security), but we will have How-To pages soon available to anyone who is confused about how we implemented a certain feature.</p>
+				<p><span style="color:gray;">Available: </span> No</p>
+			</div>
+		</div> <!-- End toolbank page -->
+		
+		
+<!--~~~~~~~~~~~~~~~~~~~~~ Workload Tracker Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+		<div id="workload_page" class="toolpage" style="display:none;">
+			<p class="visit_tool"><a href="workloadtracker/index.html">Visit the Workload Tracker Homepage</a></p>
+			<div class="toolpage_descript_div">
+				<p class="toolpage_descript"><b>DESCRIPTION</b></p>
+				<p id="toolpage_descript_content">The Workload Tracker helps the Professional Affairs Committee and other Davidson College faculty track and search committee service assignments.</p>
+			</div> <!-- End toolpage_descript_div -->
+			<div class="demo_tool_div">
+				<p class="demo_header">DEMO VERSION</p>
+				<p class="demo_descript">For each tool, we provide simplified demo versions in order to make these tools available to anyone who wishes to use them. These versions will not include security measures or backend scripts (for our security), but we will have How-To pages soon available to anyone who is confused about how we implemented a certain feature.</p>
+				<p><span style="color:gray;">Available: </span><a href="how-to/how-to_workloadtracker/index.html">Yes</a></p>
+			</div>
+		</div> <!-- End workload tracker page -->
+		
+		
+		
+<!--~~~~~~~~~~~~~~~~~~~~~ Orientation Team Assigner Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+		<div id="orientation_assign_page" class="toolpage" style="display:none;">
+			<p class="visit_tool"><a href="Simon/OTassignment/Website/">Visit the Orientation Team Task Assigner Homepage</a></p>
+			<div class="toolpage_descript_div">
+				<p class="toolpage_descript"><b>DESCRIPTION</b></p>
+				<p id="toolpage_descript_content">The Orientation Team Task Assigner helps the Dean of Students office at Davidson College find an optimal assignment of Orientation Team workers to tasks.</p>
+			</div> <!-- End toolpage_descript_div -->
+			<div class="demo_tool_div">
+				<p class="demo_header">DEMO VERSION</p>
+				<p class="demo_descript">For each tool, we provide simplified demo versions in order to make these tools available to anyone who wishes to use them. These versions will not include security measures or backend scripts (for our security), but we will have How-To pages soon available to anyone who is confused about how we implemented a certain feature.</p>
+				<p><span style="color:gray;">Available: </span> No</p>
+			</div>
+		</div> <!-- End orientation assigner page -->
+		
+		
+		
+<!--~~~~~~~~~~~~~~~~~~~~~ Coursefinder Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+		<div id="coursefinder_page" class="toolpage">
+			<p class="visit_tool"><a href="coursepicker/coursefinder.html">Visit the Coursefinder Homepage</a></p>
+			<div class="toolpage_descript_div">
+				<p class="toolpage_descript"><b>DESCRIPTION</b></p>
+				<p id="toolpage_descript_content">The Coursefinder helps Davidson students find courses that satisfy distribution requirements, within specified day and time parameters.</p>
+			</div> <!-- End toolpage_descript_div -->
+			<div class="demo_tool_div">
+				<p class="demo_header">DEMO VERSION</p>
+				<p class="demo_descript">For each tool, we provide simplified demo versions in order to make these tools available to anyone who wishes to use them. These versions will not include security measures or backend scripts (for our security), but we will have How-To pages soon available to anyone who is confused about how we implemented a certain feature.</p>
+				<p><span style="color:gray;">Available: </span> No</p>
+			</div>
+		</div> <!-- End coursefinder page -->
+		
+<!--~~~~~~~~~~~~~~~~~~~~~ FindACourse Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+		<div id="findacourse_page" class="toolpage">
+			<p class="visit_tool"><a href="FindACourse/search">Visit the FindACourse Searchpage</a></p>
+			<div class="toolpage_descript_div">
+				<p class="toolpage_descript"><b>DESCRIPTION</b></p>
+				<p id="toolpage_descript_content">FindACourse is a search engine that allows current students to search for courses and syllabi by semester, professor, subject, day, time, distribution requirement, and class size.</p>
+			</div> <!-- End toolpage_descript_div -->
+			<div class="demo_tool_div">
+				<p class="demo_header">DEMO VERSION</p>
+				<p class="demo_descript">For each tool, we provide simplified demo versions in order to make these tools available to anyone who wishes to use them. These versions will not include security measures or backend scripts (for our security), but we will have How-To pages soon available to anyone who is confused about how we implemented a certain feature.</p>
+				<p><span style="color:gray;">Available: </span> No</p>
+			</div>
+		</div> <!-- End coursefinder page -->
+	</body>
+</html>
