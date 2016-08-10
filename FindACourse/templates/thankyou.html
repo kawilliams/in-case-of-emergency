@@ -1,0 +1,71 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href={{url_for('static',filename='upload.css')}}>
+	</head>
+	
+	<body>
+		<h4 id="davidson_logo">DAVIDSON COLLEGE</h4>
+		<div id="receipt">
+			{% if (syl_list|length > 0) or (vis_list|length > 0) or (prv_list|length > 0) or (lo_txt_list|length > 0) %}
+				<h2>Thank you for your submissions! </h2>
+				
+				<h3>You made the following changes: </p>
+			{% else %}
+			<h2>No changes were made.</h2>
+			{% endif %}
+			{% if syl_list|length > 0 %}
+			
+				<h4 style="text-align: left; margin-left: 5%">The syllabus was changed for: </h4>
+				<ul>
+				{% for syl in syl_list %}
+					<li style="text-align: left; margin-left: 8%"><p>{{ syl }}</p></li>
+				{% endfor %}
+				</ul>
+			
+			{% endif %}
+			{% if vis_list|length > 0 %}
+			
+				<h4 style="text-align: left; margin-left: 5%">The visitable setting was changed for: </h4>
+				<ul>
+				{% for vis in vis_list %}
+					<li style="text-align: left; margin-left: 8%"><p>{{ vis }}</p></li>
+				{% endfor %}
+				</ul>
+				
+			{% endif %}	
+			{% if prv_list|length > 0 %}
+			
+				<h4 style="text-align: left; margin-left: 5%">The privacy setting was changed for: </h4>
+				<ul>
+				{% for prv in prv_list %}
+					<li style="text-align: left; margin-left: 8%"><p>{{ prv }}</p></li>
+				{% endfor %}
+				</ul>
+				
+			{% endif %}
+			{% if lo_txt_list|length > 0 %}
+			
+				<h4 style="text-align: left; margin-left: 5%">The learning outcomes were changed for: </h4>
+				<ul>
+				{% for lo in lo_txt_list %}
+					<li style="text-align: left; margin-left: 8%"><p>{{ lo }}</p></li>
+				{% endfor %}
+				</ul>	
+			
+			{% endif %}
+		
+		<br >
+		<br >
+		<!--<div id="thanks">-->
+		
+			<a href="/upload_syllabi"><input id="button" type="button" value="Syllabus Submission Form" style="margin-left:2%;"></a>
+			<a href="/search"><input id="button" type="button" value="Browse Syllabi"></a>
+		</form>	
+		</div>
+			
+		
+	</body>
+			
+	
+	
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <link rel="stylesheet" type="text/css" href={{url_for('static',filename='upload.css')}}>
+        <title>Login - Upload Syllabi</title>
+    </head>
+    <body onload="document.getElementById('loading_screen').style.display = 'none';">
+	    <div id='loading_screen'></div>
+	    <h4 id="davidson_logo">DAVIDSON COLLEGE</h4>
+	    <div id="upload_div_login">
+		<img src="https://github.com/asalexanderlee/syllabus_project/blob/upload_form_hermon/ChambersBuilding_AboutPage.jpg?raw=true" id="chambers_img">			
+
+        <h2 id="syllabus_upload_load">Syllabus Upload</h2>
+        {% set pop_courses = False %}
+        {% set submit_courses = False %}
+        
+		<form action="{{ url_for('get_courses') }}" method="post" enctype="multipart/form-data">
+		<div id="user_semest_container">									
+		<span class="input_text">Davidson username:<input id="username" type="text" name="username" required value="{{ username }}"></span>
+		<br>	
+	
+		<span class="input_text">Academic period: </span>
+			<select name="semester" id="semester_select">
+				{% for ap in most_recent %}
+				{% if ap == semester %}
+					{% if ap[-1] == '1' %}
+						<option value="{{ ap }}" checked>Fall {{ ap[:4] }}</option>
+					{% else %}
+						<option value="{{ ap }}" checked>Spring {{ ((ap[:4]|int)+1)|string }}</option>
+					{% endif %}		
+				{% else %}
+					{% if ap[-1] == '1' %}
+						<option value="{{ ap }}">Fall {{ ap[:4] }}</option>
+					{% else %}
+						<option value="{{ ap }}">Spring {{ ((ap[:4]|int)+1)|string }}</option>
+					{% endif %}	
+				{% endif %}		
+				{% endfor %}
+			</select>
+		<br>
+			<span class="input_text" style="margin-left:18%;">Password: <input id="password" type="password" name="password" /></span>
+		<br>
+		<br>
+		{%- for message in get_flashed_messages() %}
+			<h4 class="input_text" style="color: red; margin-left: 0%;">{{ message }}</h4>
+		{%- endfor %}
+			<input id="button" type="submit" name="submit" onclick="document.getElementById('loading_screen').style.display = 'block';" value="Find My Courses">
+		</div>
+		</form>
+		</div>	    
+    </body>
+</html>
+
